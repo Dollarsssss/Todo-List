@@ -1,14 +1,14 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import './App.css'
 import Todo from './Todo';
 import { v4 as uuidv4 } from 'uuid';
 
-function App() {
+type Todo = {
+  id: string;
+  task: string;
+};
 
-  type Todo = {
-    id: string;
-    task: string;
-  };
+function App() {
 
   const initialTodos = [
     { id: uuidv4(), task: "task 1" },
@@ -38,6 +38,10 @@ function App() {
     setInputTodo(event.target.value);
   }
 
+  function handleDelete(id:string){
+    const updateTodo = todos.filter(todo => todo.id !== id)
+    setTodos(updateTodo)
+  }
   return (
     <div className='container'>
       <div className='container-wrapper'>
@@ -50,9 +54,8 @@ function App() {
           </header>
           <section className='todo-task'>
             {todos.map((todo)=>(
-                <Todo key={todo.id} task={todo.task}/>
+                <Todo key={todo.id} id={todo.id}task={todo.task} onDelete={handleDelete}/>
             ))}
-  
           </section>
           <section className='new-todo'>
             <form onSubmit={handleSubmit}>
