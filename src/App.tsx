@@ -16,32 +16,42 @@ function App() {
   ]
 
   const [todos, setTodos] = useState<Todo[]>(initialTodos)
-  
-  console.log(todos);
-  
+
   const [inputTodo, setInputTodo] = useState<string>("");
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-   
-    const newTodo:Todo = {
-      id:uuidv4(),
-      task:inputTodo
+
+    const newTodo: Todo = {
+      id: uuidv4(),
+      task: inputTodo
     }
-    setTodos([...todos,newTodo])    
+    setTodos([...todos, newTodo])
     console.log("Content Todo: ", inputTodo);
     setInputTodo("")
-  
+
   }
 
   function handleInputTodo(event: ChangeEvent<HTMLInputElement>) {
     setInputTodo(event.target.value);
   }
 
-  function handleDelete(id:string){
+  function handleDelete(id: string) {
     const updateTodo = todos.filter(todo => todo.id !== id)
     setTodos(updateTodo)
   }
+
+  function handleEdit(id: string, newTask: string) {
+    const updatedTodos = todos.map(todo => {
+      if (todo.id === id) {
+        return { ...todo, task: newTask };
+      } else {
+        return todo
+      }
+    })
+    setTodos(updatedTodos)
+  }
+
   return (
     <div className='container'>
       <div className='container-wrapper'>
@@ -53,8 +63,8 @@ function App() {
             </div>
           </header>
           <section className='todo-task'>
-            {todos.map((todo)=>(
-                <Todo key={todo.id} id={todo.id}task={todo.task} onDelete={handleDelete}/>
+            {todos.map((todo) => (
+              <Todo key={todo.id} id={todo.id} task={todo.task} onDelete={handleDelete} onEdit={handleEdit} />
             ))}
           </section>
           <section className='new-todo'>
