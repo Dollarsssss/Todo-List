@@ -28,13 +28,7 @@ function Todo({ id, task, onDelete, onEdit }: TodoProps) {
 
     function handleSaveNewTask(event: FormEvent<HTMLFormElement>){
         event.preventDefault();
-
-        const editTodo = {
-            id: id,
-            task: inputNewTask
-          }
-
-        onEdit(editTodo.id, editTodo.task)
+        onEdit(id, inputNewTask)
         setIsEditing(!isEditing);
     }
 
