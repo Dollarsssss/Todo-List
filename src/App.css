@@ -70,6 +70,7 @@ html, body {
             justify-content: space-between;
             width: 100%;
             color: #fff;
+        
           
             & .todo-task-title {
               margin-left: 60px;
@@ -138,4 +139,38 @@ html, body {
 }
 
 
+/*toggle*/
+
+.todo-task-edit-wrapper {
+  background-color: #ff5e5e;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+    & .todo-task-edit {
+      display: flex;
+      margin: 5px 60px;
+
+        & .todo-task-input-edit {
+            padding: 0 20px;
+            height: 55px;
+            width: 250px;
+            border: none;
+            font-size: 17px;
+        }
+
+        & .todo-task-btn-edit {
+          cursor: pointer;
+          font-weight: bold;
+          color: #fff;
+          border: 1px solid rgba(255, 255, 255, 0.5);;
+          height: 55px;
+          width: 100px;
+          background-color: transparent;
+          margin-left: 10px;
+        }
+      
+    }
+}
 
