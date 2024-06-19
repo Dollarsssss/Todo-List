@@ -10,7 +10,7 @@ type Todo = {
 
 function App() {
 
-  const initialTodos = [
+  const initialTodos:Todo[] = [
     { id: uuidv4(), task: "task 1" },
     { id: uuidv4(), task: "task 2" },
   ]
@@ -42,14 +42,7 @@ function App() {
   }
 
   function handleEdit(id: string, newTask: string) {
-    const updatedTodos = todos.map(todo => {
-      if (todo.id === id) {
-        return { ...todo, task: newTask };
-      } else {
-        return todo
-      }
-    })
-    setTodos(updatedTodos)
+    setTodos(todos.map(todo => todo.id === id ? { ...todo, task: newTask } : todo));
   }
 
   return (
